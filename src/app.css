@@ -1,88 +1,160 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+
+/* VARIABLES GLOBALES */
+:root {
+  --bg-dark: #090913;
+  --card-bg: #141124;
+  --banner-bg: #8e519c;
+
+  --text-main: #ffffff;
+  --text-muted: #716d86;
+  --accent-pink: #e25ebb;
+  --accent-purple: #9c48a0;
+  --accent-purple-hover: #b155b5;
+
+  --border-card: #221c3b;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
-.card {
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  text-align: center;
-  width: 380px;
-  backdrop-filter: blur(10px);
-  position: relative;
+
+html, body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-.title {
-  font-size: 1.6rem;
+
+/* Utilitario común */
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* HEADER */
+.header {
+  padding: 36px 0 24px 0;
+  background-color: var(--bg-dark);
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  justify-self: start;
+}
+
+.brand-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  color: var(--accent-pink);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+}
+
+.brand-subtitle {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
+.nav {
+  display: flex;
+  gap: 36px;
+  justify-self: center;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-main);
+}
+
+.header-spacer {
+  justify-self: end;
+}
+
+/* FOOTER */
+.footer {
+  padding: 50px 0 80px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 36px;
+}
+
+.footer-heading {
+  font-size: 0.9rem;
   margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #fff;
+  font-weight: 600;
 }
-.btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: none;
-  padding: 12px;
-  margin: 12px 0;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  width: 100%;
-  transition: transform 0.2s, background 0.3s;
+
+.footer-links {
+  list-style: none;
 }
-.btn:hover {
-  transform: scale(1.05);
+
+.footer-links li {
+  margin-bottom: 12px;
 }
-.btn.primary {
-  background-color: #4cafef;
-  color: #fff;
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s ease;
 }
-.btn.primary:hover {
-  background-color: #357ab8;
+
+.footer-links a:hover {
+  color: var(--text-main);
 }
-.btn.secondary {
-  background-color: #43a047;
-  color: #fff;
-}
-.btn.secondary:hover {
-  background-color: #2e7031;
-}
-.info {
-  margin: 12px 0;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  color: #fff;
-  word-break: break-word;
-}
-strong {
-  color: #ffd54f;
-}
-/* Barra de carga */
-.loading-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: linear-gradient(90deg, #ffd54f, #4cafef, #43a047);
-  background-size: 200% 100%;
-  animation: moveBar 1.2s linear infinite;
-  border-radius: 4px 4px 0 0;
-}
-@keyframes moveBar {
-  0% { background-position: 0% 0; }
-  100% { background-position: 200% 0; }
+
+@media (max-width: 900px) {
+  .header-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .brand, .nav, .header-spacer {
+    justify-self: center;
+  }
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
 }
